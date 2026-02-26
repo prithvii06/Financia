@@ -1,4 +1,46 @@
 import './App.css'
+import { Monitor, Apple, Terminal, Smartphone } from 'lucide-react'
+import heroImage from './assets/Hero Image.png'
+import mazeSS from './assets/Maze SS.png'
+import citySS from './assets/City SS.png'
+import fightSS from './assets/Fight SS.png'
+import dnyanaAvatar from './assets/dnyana.png'
+import prithviAvatar from './assets/prithvi.png'
+import prabodhAvatar from './assets/prabodh.png'
+import payalAvatar from './assets/payal.png'
+
+const platforms = [
+  {
+    name: 'Windows',
+    icon: Monitor,
+    description: 'Windows 10+',
+    available: true,
+  },
+  {
+    name: 'macOS',
+    icon: Apple,
+    description: 'macOS 11+',
+    available: true,
+  },
+  {
+    name: 'Linux',
+    icon: Terminal,
+    description: 'Ubuntu 20.04+',
+    available: true,
+  },
+  {
+    name: 'Android',
+    icon: Smartphone,
+    description: 'Android 8+',
+    available: true,
+  },
+  {
+    name: 'iOS',
+    icon: Smartphone,
+    description: 'iOS 14+',
+    available: false,
+  },
+]
 
 const sections = [
   { id: 'about', label: 'About' },
@@ -63,8 +105,11 @@ function App() {
             </button>
           </div>
           <div className="hero-image-card card-glow">
-            {/* Replace src with your hero image asset */}
-            <div className="hero-image-placeholder">Hero Image</div>
+            <img
+              src={heroImage}
+              alt="Financia hero scene"
+              className="hero-image"
+            />
           </div>
         </section>
 
@@ -196,13 +241,20 @@ function App() {
           </p>
           <div className="cards-grid screenshots-grid">
             {[
-              'Battle monsters in pixel dungeons',
-              'Explore vibrant pixel cities',
-              'Epic boss battles await',
-            ].map((caption) => (
-              <figure key={caption} className="screenshot-card card-glow">
-                <div className="screenshot-placeholder">Screenshot</div>
-                <figcaption>{caption}</figcaption>
+              { src: mazeSS, caption: 'Battle monsters in pixel dungeons' },
+              { src: citySS, caption: 'Explore vibrant pixel cities' },
+              { src: fightSS, caption: 'Epic boss battles await' },
+            ].map((shot) => (
+              <figure
+                key={shot.caption}
+                className="screenshot-card card-glow"
+              >
+                <img
+                  src={shot.src}
+                  alt={shot.caption}
+                  className="screenshot-image"
+                />
+                <figcaption>{shot.caption}</figcaption>
               </figure>
             ))}
           </div>
@@ -215,29 +267,24 @@ function App() {
             adventure!
           </p>
           <div className="cards-grid play-grid">
-            {[
-              { platform: 'Windows', note: 'Windows 10+', cta: 'DOWNLOAD' },
-              { platform: 'macOS', note: 'macOS 11+', cta: 'DOWNLOAD' },
-              { platform: 'Linux', note: 'Ubuntu 20.04+', cta: 'DOWNLOAD' },
-              { platform: 'Android', note: 'Android 8+', cta: 'DOWNLOAD' },
-              { platform: 'iOS', note: 'iOS 14+', cta: 'COMING SOON' },
-            ].map((p) => (
-              <article key={p.platform} className="platform-card card-glow">
-                <div className="platform-icon" />
-                <h3>{p.platform}</h3>
-                <p className="platform-note">{p.note}</p>
-                <a
-                  href="#"
-                  className={
-                    p.cta === 'COMING SOON'
-                      ? 'platform-btn disabled'
-                      : 'platform-btn'
-                  }
-                >
-                  {p.cta}
-                </a>
-              </article>
-            ))}
+            {platforms.map((p) => {
+              const Icon = p.icon
+              const cta = p.available ? 'DOWNLOAD' : 'COMING SOON'
+              const btnClass = p.available ? 'platform-btn' : 'platform-btn disabled'
+
+              return (
+                <article key={p.name} className="platform-card card-glow">
+                  <div className="platform-icon">
+                    <Icon size={28} />
+                  </div>
+                  <h3>{p.name}</h3>
+                  <p className="platform-note">{p.description}</p>
+                  <a href="#" className={btnClass}>
+                    {cta}
+                  </a>
+                </article>
+              )
+            })}
           </div>
         </section>
 
@@ -252,25 +299,33 @@ function App() {
                 name: 'Dnyaneshwari Karde',
                 role: 'Lead Developer',
                 text: 'Spearheads the development process, architecting the core game systems and mechanics.',
+                image: dnyanaAvatar,
               },
               {
                 name: 'Prabodh Kamble',
                 role: 'Backend Developer',
                 text: 'Powers the server-side logic, database design, and ensures seamless data flow.',
+                image: prabodhAvatar,
               },
               {
                 name: 'Prithviraj Gokule',
                 role: 'UI/UX Designer',
                 text: 'Crafts the visual experience, bringing every screen and interaction to life.',
+                image: prithviAvatar,
               },
               {
                 name: 'Payal Khode',
                 role: 'Game Designer',
                 text: 'Designs the quests, storylines, and financial literacy challenges players love.',
+                image: payalAvatar,
               },
             ].map((creator) => (
               <article key={creator.name} className="creator-card card-glow">
-                <div className="creator-image-placeholder">Avatar</div>
+                <img
+                  src={creator.image}
+                  alt={creator.name}
+                  className="creator-image-placeholder"
+                />
                 <h3>{creator.name}</h3>
                 <p className="creator-role">{creator.role}</p>
                 <p>{creator.text}</p>
