@@ -15,30 +15,35 @@ const platforms = [
     icon: Monitor,
     description: 'Windows 10+',
     available: true,
+    downloadUrl: null,
   },
   {
     name: 'macOS',
     icon: Apple,
     description: 'macOS 11+',
     available: true,
+    downloadUrl: '/Financia-mac.zip',
   },
   {
     name: 'Linux',
     icon: Terminal,
     description: 'Ubuntu 20.04+',
     available: true,
+    downloadUrl: null,
   },
   {
     name: 'Android',
     icon: Smartphone,
     description: 'Android 8+',
     available: true,
+    downloadUrl: null,
   },
   {
     name: 'iOS',
     icon: Smartphone,
     description: 'iOS 14+',
     available: false,
+    downloadUrl: null,
   },
 ]
 
@@ -279,7 +284,11 @@ function App() {
                   </div>
                   <h3>{p.name}</h3>
                   <p className="platform-note">{p.description}</p>
-                  <a href="#" className={btnClass}>
+                  <a
+                    href={p.downloadUrl || '#'}
+                    className={btnClass}
+                    download={p.downloadUrl ? 'Financia-mac.zip' : undefined}
+                  >
                     {cta}
                   </a>
                 </article>
