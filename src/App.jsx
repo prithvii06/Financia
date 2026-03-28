@@ -15,7 +15,8 @@ const platforms = [
     icon: Monitor,
     description: 'Windows 10+',
     available: true,
-    downloadUrl: null,
+    downloadUrl: '/Financiai-windows.exe',
+    downloadFilename: 'Financiai-windows.exe',
   },
   {
     name: 'macOS',
@@ -23,6 +24,7 @@ const platforms = [
     description: 'macOS 11+',
     available: true,
     downloadUrl: '/Financia-mac.zip',
+    downloadFilename: 'Financia-mac.zip',
   },
   {
     name: 'Linux',
@@ -30,6 +32,7 @@ const platforms = [
     description: 'Ubuntu 20.04+',
     available: true,
     downloadUrl: null,
+    downloadFilename: null,
   },
   {
     name: 'Android',
@@ -37,6 +40,7 @@ const platforms = [
     description: 'Android 8+',
     available: true,
     downloadUrl: null,
+    downloadFilename: null,
   },
   {
     name: 'iOS',
@@ -44,6 +48,7 @@ const platforms = [
     description: 'iOS 14+',
     available: false,
     downloadUrl: null,
+    downloadFilename: null,
   },
 ]
 
@@ -287,7 +292,7 @@ function App() {
                   <a
                     href={p.downloadUrl || '#'}
                     className={btnClass}
-                    download={p.downloadUrl ? 'Financia-mac.zip' : undefined}
+                    download={p.downloadUrl && p.downloadFilename ? p.downloadFilename : undefined}
                   >
                     {cta}
                   </a>

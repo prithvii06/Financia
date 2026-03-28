@@ -23,5 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
-# Large game build (host elsewhere for download)
+# Large game builds (host in public/ for local; use external URLs for production)
 public/Financia-mac.zip
+public/Financia-windows.zip
+public/Financiai-windows.exe
+public/*.zip
+public/*.exe
